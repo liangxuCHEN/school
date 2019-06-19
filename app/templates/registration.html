@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}报名{% endblock %}
+{% block head %}
+<style>
+    body
+  {
+    background-image: url(http://img.foshanplus.com/timg.jpeg);
+    font-size: large;
+  }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if info %}
+
+    {% if is_error %}
+        <div class="alert alert-warning" role="alert">{{ info }}</div>
+    {% else %}
+        <div class="alert alert-success" role="alert">
+            <p>{{ info }}</p>
+            <p>请记住您的编号，方便日后信息查询</p>
+        </div>
+    {% endif %}
+
+{% endif %}
+<div style="margin: 45px 18px;">
+          <form class="form-horizontal" action="{% url 'registration' %}" method="post" role="form">
+            {%csrf_token%}
+            <div class="form-group">
+                <!-- Text input-->
+                  <label for="name" class="col-sm-2 control-label">姓名</label>
+                  <div class="col-sm-10">
+                    <input type="text" placeholder="请输入您的名字" class="form-control" id="name" name="name">
+                  </div>
+
+              </div>
+
+            <div class="form-group">
+
+                  <label class="col-sm-2 control-label">性别</label>
+                  <!-- Inline Radios -->
+                    <div class="col-sm-10">
+                      <label class="radio-inline">
+                        <input type="radio" value="1" name="gender" checked="checked">
+                        男性
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" value="0" name="gender">
+                          女性
+                      </label>
+                    </div>
+                </div>
+
+            <div class="form-group">
+
+                  <!-- Text input-->
+                  <label class="col-sm-2 control-label">年龄</label>
+                  <div class="col-sm-10">
+                    <input type="number" placeholder="输入您的周岁" class="form-control" id="age" name="age">
+                    <p class="help-block"></p>
+                  </div>
+                </div>
+
+            <div class="form-group">
+
+                  <!-- Text input-->
+                  <label class="col-sm-2 control-label">籍贯</label>
+                  <div class="col-sm-10">
+                    <input type="text" placeholder="请输入您的出生地" class="form-control" id="birth_place" name="birth_place">
+                    <p class="help-block"></p>
+                  </div>
+                </div>
+
+
+
+            <div class="form-group">
+
+                  <!-- Text input-->
+                  <label class="col-sm-2 control-label">家庭地址</label>
+                  <div class="col-sm-10">
+                    <input type="text" placeholder="请输入您的家庭地址" class="form-control" id="address" name="address">
+                    <p class="help-block"></p>
+                  </div>
+                </div>
+
+
+
+            <div class="form-group">
+
+                  <!-- Text input-->
+                  <label class="col-sm-2 control-label">出生</label>
+                  <div class="col-sm-10">
+                    <input type="date" class="form-control" id="birthday" name="birthday" />
+                    <p class="help-block"></p>
+                  </div>
+                </div>
+
+              <div class="form-group">
+                  <div class="col-sm-10">
+                    <input type="submit" class="btn btn-primary btn-lg" value="提交">
+                  </div>
+              </div>
+          </form>
+
+</div>
+
+{% endblock%}

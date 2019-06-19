@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}报名查询{% endblock %}
+{% block head %}
+<style>
+    body
+  {
+    background-image: url(http://img.foshanplus.com/timg.jpeg);
+    font-size: large;
+  }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if info %}
+
+    {% if is_error %}
+        <div class="alert alert-warning" role="alert">{{ info }}</div>
+    {% else %}
+        <div class="alert alert-success" role="alert">
+            <p>{{ info }}</p>
+        </div>
+            <ul class="list-group">
+            {% for item in data %}
+                <li class="list-group-item">
+                    <p>编号：{{item.id}}</p>
+                    <p>姓名：{{item.name}}</p>
+                    <p>性别：{{item.gender}}</p>
+                    <p>出生日期：{{item.birthday}}</p>
+                    <p>籍贯：{{item.birth_place}}</p>
+                    <p>年龄：{{item.age}}</p>
+                    <p>地址：{{item.address}}</p>
+                </li>
+            {% endfor %}
+            </ul>
+
+    {% endif %}
+<a class="btn btn-primary btn-lg" href="{% url 'check_registration' %}">重新查询</a>
+{% else %}
+<div style="margin: 45px 18px;">
+        <form class="form-horizontal" action="{% url 'check_registration' %}" method="post" role="form">
+                {%csrf_token%}
+
+            <div class="form-group">
+
+                  <label class="col-sm-2 control-label">输入类别</label>
+                  <!-- Inline Radios -->
+                    <div class="col-sm-10">
+                      <label class="radio-inline">
+                        <input type="radio" value="name" name="type" checked="checked">
+                        名字
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" value="id" name="type">
+                          编号
+                      </label>
+                    </div>
+                </div>
+
+
+         <div class="form-group">
+                <!-- Text input-->
+                  <label for="name" class="col-sm-2 control-label">查询</label>
+                  <div class="col-sm-10">
+                    <input type="text" placeholder="请输入您的名字或编号" class="form-control" id="input" name="input">
+                  </div>
+
+              </div>
+
+
+              <div class="form-group">
+                  <div class="col-sm-10">
+                    <input type="submit" class="btn btn-primary btn-lg" input type="submit"type="submit""提交">
+                  </div>
+              </div>
+
+      </form>
+</div>
+
+{% endif %}
+
+{% endblock%}

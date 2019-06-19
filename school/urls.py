@@ -21,4 +21,6 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^register$', views.register, name='register'),
+    url(r'^registration$', views.register_from, name='registration'),
+    url(r'^check$', views.check_info, name='check_registration'),
 ]

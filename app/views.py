@@ -75,3 +75,82 @@ def register(request):
                 'data': [],
             })
     return allow_all(response)
+
+
+def register_from(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        age = request.POST.get("age")
+        gender = request.POST.get("gender")
+        birth_place = request.POST.get("birth_place")
+        birthday = request.POST.get("birthday")
+        address = request.POST.get("address")
+
+        try:
+
+
+            new_regist = RegistModel(
+                name=name,
+                age=age,
+                gender=gender,
+                birthday=birthday,
+                birth_place=birth_place,
+                address=address
+            )
+            new_regist.save()
+
+            return render(
+                request,
+                'registration.html',
+                {
+                    'info':'恭喜 %s 注册成功, 您的编号：%s' % (new_regist.name, new_regist.id),
+                    'item': new_regist,
+                    'is_error': False,
+                }
+            )
+        except Exception as e:
+            print(e)
+            return render(
+                request,
+                'registration.html',
+                {
+                    'info': '注册失败，请再试一下',
+                    'is_error': True,
+                },
+            )
+
+    return render(request,'registration.html')
+
+def check_info(request):
+    if request.method == 'POST':
+        input_data = request.POST.get("input")
+        type = request.POST.get("type")
+
+
+        if type == 'id':
+            res = RegistModel.objects.filter(id=input_data).all()
+        else:
+            res = RegistModel.objects.filter(name=input_data).all()
+
+        if res:
+            return render(
+                request,
+                'find_registration_info.html',
+                {
+                    'is_error': False,
+                    'info': '查询成功',
+                    'data': [i.to_json() for i in res]
+                }
+            )
+        else:
+            return render(
+                request,
+                'find_registration_info.html',
+                {
+                    'is_error': True,
+                    'info': '没有找到报名信息，请核实姓名编号',
+                    'data': []
+                }
+            )
+
+    return render(request, 'find_registration_info.html')

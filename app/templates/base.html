@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="Louis">
+    <script src="http://img.foshanplus.com/js/jquery.js"></script>
+    <link rel="stylesheet" href="http://img.foshanplus.com/css/bootstrap.min.css">
+
+
+    {% block head %}
+      {% endblock %}
+
+    <title>{% block title %}API系统{% endblock %}</title>
+
+  </head>
+
+<body role="document">
+<!-- content -->
+<div class="container-fluid">{% block content %}{% endblock %}</div>
+
+<div id="footer">
+        {% block footer %}
+
+        {% endblock %}
+ </div>
+
+<script src="http://img.foshanplus.com/js/bootstrap.min.js"></script>
+
+    {% block script %}
+
+    {% endblock %}
+  </body>
+</html>

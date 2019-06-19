@@ -14,6 +14,7 @@ class RegistModel(models.Model):
     age = models.IntegerField('年龄')
     birth_place = models.CharField('籍贯', max_length=64)
     address = models.CharField('家庭住址', max_length=256)
+
     created = models.DateTimeField(auto_now_add=True)
 
     def to_json(self):
