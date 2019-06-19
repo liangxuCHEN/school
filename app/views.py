@@ -148,7 +148,7 @@ def check_info(request):
                 'find_registration_info.html',
                 {
                     'is_error': True,
-                    'info': '没有找到报名信息，请核实姓名编号',
+                    'info': '没有找到报名信息，请核实姓名或编号',
                     'data': []
                 }
             )
